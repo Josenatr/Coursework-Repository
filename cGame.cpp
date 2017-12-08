@@ -43,7 +43,7 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	// Clear the buffer with a black background
 	SDL_SetRenderDrawColor(theRenderer, 0, 0, 0, 255);
 	SDL_RenderPresent(theRenderer);
-
+	theTextureMgr->setRenderer(theRenderer);
 	theFontMgr->initFontLib();
 	theSoundMgr->initMixer();
 
@@ -61,34 +61,7 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		fileAvailable = true;
 	}
 
-	// Store the textures
-	textureName = { "asteroid1", "asteroid2", "asteroid3", "asteroid4", "bullet","theMonster","theBackground" };
-	texturesToUse = { "Images\\asteroid1.png", "Images\\asteroid2.png", "Images\\asteroid3.png", "Images\\asteroid4.png", "Images\\bullet.png", "Images\\rocketSprite.png", "Images\\starscape1024x768.png" };
-	for (int tCount = 0; tCount < textureName.size(); tCount++)
-	{
-		theTextureMgr->addTexture(textureName[tCount], texturesToUse[tCount]);
-	}
-
-	spriteBkgd.setSpritePos({ 0, 0 });
-	spriteBkgd.setTexture(theTextureMgr->getTexture("theBackground"));
-	spriteBkgd.setSpriteDimensions(theTextureMgr->getTexture("theBackground")->getTWidth(), theTextureMgr->getTexture("theBackground")->getTHeight());
-
-	monsterSprite.setSpritePos({ 500, 350 });
-	monsterSprite.setTexture(theTextureMgr->getTexture("theMonster"));
-	monsterSprite.setSpriteDimensions(theTextureMgr->getTexture("theMonster")->getTWidth(), theTextureMgr->getTexture("theMonster")->getTHeight());
-	monsterSprite.setMonsterVelocity({ 0, 0 });
-
-	for (int astro = 0; astro < 5; astro++)
-	{
-		theAsteroids.push_back(new cAsteroid);
-		theAsteroids[astro]->setSpritePos({ 100 * (rand() % 5 + 1), 50 * (rand() % 5 + 1) });
-		theAsteroids[astro]->setSpriteTranslation({ (rand() % 8 + 1), (rand() % 8 + 1) });
-		int randAsteroid = rand() % 4;
-		theAsteroids[astro]->setTexture(theTextureMgr->getTexture(textureName[randAsteroid]));
-		theAsteroids[astro]->setSpriteDimensions(theTextureMgr->getTexture(textureName[randAsteroid])->getTWidth(), theTextureMgr->getTexture(textureName[randAsteroid])->getTHeight());
-		theAsteroids[astro]->setAsteroidVelocity({ 3, 3 });
-		theAsteroids[astro]->setActive(true);
-	}
+	
 	
 	fontList = { "trash"};
 	fontsToUse = { "Fonts/TRASH___.ttf" };
@@ -112,6 +85,37 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		newBtn->setSpriteDimensions(theTextureMgr->getTexture(btnNameList[bCount])->getTWidth(), theTextureMgr->getTexture(btnNameList[bCount])->getTHeight());
 		theButtonMgr->add(btnNameList[bCount], newBtn);
 	}
+	
+	// Store the textures
+	textureName = { "asteroid1", "asteroid2", "asteroid3", "asteroid4","theMonster","theBackground" };
+	texturesToUse = { "Images\\asteroid1.png", "Images\\asteroid2.png", "Images\\asteroid3.png", "Images\\asteroid4.png", "Images\\bullet.png", "Images\\rocketSprite.png", "Images\\starscape1024x768.png" };
+	for (int tCount = 0; tCount < textureName.size(); tCount++)
+	{
+		theTextureMgr->addTexture(textureName[tCount], texturesToUse[tCount]);
+	}
+
+	spriteBkgd.setSpritePos({ 0, 0 });
+	spriteBkgd.setSpriteScale({ 1,1 });
+	spriteBkgd.setTexture(theTextureMgr->getTexture("theBackground"));
+	spriteBkgd.setSpriteDimensions(theTextureMgr->getTexture("theBackground")->getTWidth(), theTextureMgr->getTexture("theBackground")->getTHeight());
+
+	monsterSprite.setSpritePos({ 500, 350 });
+	monsterSprite.setSpriteScale({ 1,1 });
+	monsterSprite.setTexture(theTextureMgr->getTexture("theMonster"));
+	monsterSprite.setSpriteDimensions(theTextureMgr->getTexture("theMonster")->getTWidth(), theTextureMgr->getTexture("theMonster")->getTHeight());
+	monsterSprite.setMonsterVelocity({ 0, 0 });
+
+	for (int astro = 0; astro < 5; astro++)
+	{
+		theAsteroids.push_back(new cAsteroid);
+		theAsteroids[astro]->setSpritePos({ 100 * (rand() % 5 + 1), 50 * (rand() % 5 + 1) });
+		theAsteroids[astro]->setSpriteTranslation({ (rand() % 8 + 1), (rand() % 8 + 1) });
+		int randAsteroid = rand() % 4;
+		theAsteroids[astro]->setTexture(theTextureMgr->getTexture(textureName[randAsteroid]));
+		theAsteroids[astro]->setSpriteDimensions(theTextureMgr->getTexture(textureName[randAsteroid])->getTWidth(), theTextureMgr->getTexture(textureName[randAsteroid])->getTHeight());
+		theAsteroids[astro]->setAsteroidVelocity({ 3, 3 });
+		theAsteroids[astro]->setActive(true);
+	}
 	// Load game sounds
 	soundList = { "theme", "click" };
 	soundTypes = { MUSIC, SFX };
@@ -122,7 +126,6 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	}
 
 	theSoundMgr->getSnd("theme")->play(-1);
-
 }
 
 void cGame::run(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
@@ -144,6 +147,11 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer, double rotA
 {
 
 	SDL_RenderPresent(theRenderer);
+}
+
+void cGame::render(SDL_Renderer * theRenderer, SDL_Point * spriteDimensions, SDL_Point * spritePos, SDL_Point * spriteScale)
+{
+	monsterSprite.render(theRenderer, &monsterSprite.getSpriteDimensions(), &monsterSprite.getSpritePos(), monsterSprite.getSpriteScale());
 }
 
 void cGame::update()
@@ -235,7 +243,7 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		// Render the Title
 		tempTextTexture = theTextureMgr->getTexture("TitleTxt");
 		pos = { 10, 10, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
-		scale = { 1, 1 };
+		SDL_Point scale = { 1, 1 };
 		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
 		tempTextTexture = theTextureMgr->getTexture("EatTxt");
 		pos = { 300, 10, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
@@ -251,10 +259,20 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	break;
 	case PLAYING:
 	{
-		SDL_RenderClear(theRenderer);
 		spriteBkgd.render(theRenderer, NULL, NULL, spriteBkgd.getSpriteScale());
+		// Render the Title
+		tempTextTexture = theTextureMgr->getTexture("TitleTxt");
+		pos = { 10, 10, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
+		SDL_Point scale = { 1, 1 };
 		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
-		monsterSprite.render(theRenderer, &monsterSprite.getSpriteDimensions(), &monsterSprite.getSpritePos(), monsterSprite.getMonsterRotation(), &monsterSprite.getSpriteCentre(), monsterSprite.getSpriteScale());
+		tempTextTexture = theTextureMgr->getTexture("EatTxt");
+		pos = { 300, 10, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
+		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
+		tempTextTexture = theTextureMgr->getTexture("AvoidTxt");
+		pos = { 300, 75, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
+		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
+		SDL_RenderClear(theRenderer);
+		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
 		SDL_RenderPresent(theRenderer);
 		// Render each asteroid in the vector array
 		for (int draw = 0; draw < theAsteroids.size(); draw++)

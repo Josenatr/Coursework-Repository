@@ -3,7 +3,6 @@
 
 // Monster game headers
 #include "GameConstants.h"
-#include "cSprite.h"
 #include "cBkGround.h"
 #include "cMonster.h"
 #include "cTextureMgr.h"
@@ -14,6 +13,7 @@
 #include "cSound.h"
 #include "cButtonMgr.h"
 #include "cButton.h"
+#include "cSprite.h"
 #include "cFileHandler.h"
 #include "cAsteroid.h"
 

@@ -5,6 +5,7 @@ cSprite.cpp
 =================
 */
 #include "cSprite.h"
+#include "cGame.h"
 /*
 =================
 - Data constructor initializes the cSprite to the data passed to
@@ -94,12 +95,12 @@ void cSprite::setTexture(cTexture* theSpriteTexture)  // set the image of the sp
 }
 
 
-void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, FPoint theScaling)
+void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, SDL_Point theScaling)
 {
 	this->spriteTexture->renderTexture(theRenderer, this->spriteTexture->getTexture(), theSourceRect, theDestRect, theScaling);
 }
 
-void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, FPoint theScaling)
+void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, SDL_Point theScaling)
 {
 	this->spriteTexture->renderTexture(theRenderer, this->spriteTexture->getTexture(), theSourceRect, theDestRect, rotAngle, spriteCentre, theScaling);
 }
@@ -152,7 +153,7 @@ void cSprite::setSpriteCentre(SDL_Point sCentre)  // set the position of the spr
 =================
 */
 
-FPoint cSprite::getSpriteScale()  // Return the sprites current scaling
+SDL_Point cSprite::getSpriteScale()  // Return the sprites current scaling
 {
 	return this->spriteScale;
 }
@@ -163,10 +164,10 @@ FPoint cSprite::getSpriteScale()  // Return the sprites current scaling
 =================
 */
 
-void cSprite::setSpriteScale(FPoint sScale)  // set the sprites current scaling
+void cSprite::setSpriteScale(SDL_Point sScale)  // set the sprites current scaling
 {
-	this->spriteScale.X += sScale.X;
-	this->spriteScale.Y += sScale.Y;
+	this->spriteScale.x += sScale.x;
+	this->spriteScale.y += sScale.y;
 }
 /*
 =================
@@ -177,8 +178,8 @@ void cSprite::setSpriteScale(FPoint sScale)  // set the sprites current scaling
 void cSprite::scaleSprite()  // set the sprites current scaling
 {
 	// Scale sprite
-	this->spritePos_2D.w = this->spriteDimensions.w * this->spriteScale.X;
-	this->spritePos_2D.h = this->spriteDimensions.h * this->spriteScale.Y;
+	this->spritePos_2D.w = this->spriteDimensions.w * this->spriteScale.x;
+	this->spritePos_2D.h = this->spriteDimensions.h * this->spriteScale.y;
 	// Scale Sprite Centre for rotation.
 	this->spriteCentre.x = this->spritePos_2D.w / 2;
 	this->spriteCentre.y = this->spritePos_2D.h / 2;

@@ -1,6 +1,6 @@
 /*
 =================
-cMonster.cpp
+cRocket.cpp
 - Header file for class definition - IMPLEMENTATION
 =================
 */
@@ -8,69 +8,114 @@ cMonster.cpp
 
 /*
 =================================================================
-Initialise the sprite variables
+Defualt Constructor
 =================================================================
 */
-
-void cMonster::initialise()
+cMonster::cMonster() : cSprite()
 {
-	monsterVelocity = { 0, 0 };
-	monsterRotAngle = 0;
+	this->monsterVelocity = { 0, 0 };
 }
-
-//void cMonster::render()
-//{
-//}
 /*
 =================================================================
 Update the sprite position
 =================================================================
 */
 
-void cMonster::update(float deltaTime)
+void cMonster::update(double deltaTime)
 {
+
+	FPoint direction = { 0.0f, 0.0f };
+	direction.X = (sin(this->getSpriteRotAngle()*PI / 180));
+	direction.Y = -(cos(this->getSpriteRotAngle()*PI / 180));
+
+	direction.X *= this->getSpriteTranslation().x;
+	direction.Y *= this->getSpriteTranslation().y;
+
+	this->monsterVelocity.x = this->monsterVelocity.x + direction.X;
+	this->monsterVelocity.y = this->monsterVelocity.y + direction.Y;
 
 	SDL_Rect currentSpritePos = this->getSpritePos();
+	currentSpritePos.x += this->monsterVelocity.x * deltaTime;
+	currentSpritePos.y += this->monsterVelocity.y * deltaTime;
 
-	currentSpritePos.x += monsterVelocity.x;
-	currentSpritePos.y += monsterVelocity.y;
+	this->monsterVelocity.x *= 0.95;
+	this->monsterVelocity.y *= 0.95;
 
 	this->setSpritePos({ currentSpritePos.x , currentSpritePos.y });
-	this->monsterVelocity = {0,0};
+	this->setBoundingRect(this->getSpritePos());
 }
 /*
 =================================================================
-  Sets the velocity for the monster
+Sets the velocity for the rocket
 =================================================================
 */
-void cMonster::setMonsterVelocity(SDL_Point monsterVel)
+void cMonster::setMonsterVelocity(SDL_Point rocketVel)
 {
-	monsterVelocity = monsterVel;
+	monsterVelocity = rocketVel;
 }
 /*
 =================================================================
-  Gets the monster velocity
+Gets the rocket velocity
 =================================================================
 */
 SDL_Point cMonster::getMonsterVelocity()
 {
 	return monsterVelocity;
 }
+
+
 /*
 =================================================================
-Sets the rotation angle for the monster
+Update the sprite position
 =================================================================
 */
-void cMonster::setMonsterRotation(double theRotAngle)
-{
-	monsterRotAngle = theRotAngle;
-}
-/*
-=================================================================
-Gets the rotation angle for the monster
-=================================================================
-*/
-double cMonster::getMonsterRotation()
-{
-	return monsterRotAngle;
-}
+
+
+//
+//	glm::vec2 spriteVelocityAdd = glm::vec2(0.0f, 0.0f);
+//	spriteVelocityAdd.x = (glm::sin(glm::radians(spriteRotation)));
+//	spriteVelocityAdd.y = -(glm::cos(glm::radians(spriteRotation)));
+//
+//	spriteVelocityAdd *= spriteTranslation;
+//
+//	rocketVelocity += spriteVelocityAdd;
+//
+//	spritePos2D += rocketVelocity * deltaTime;
+//
+//	rocketVelocity *= 0.95;
+//
+//	/*
+//	==============================================================
+//	| Check for collisions
+//	==============================================================
+//	*/
+//	for (vector<cBullet*>::iterator bulletIterartor = theRocketBullets.begin(); bulletIterartor != theRocketBullets.end(); ++bulletIterartor)
+//	{
+//		(*bulletIterartor)->update(deltaTime);
+//		for (vector<cAsteroid*>::iterator asteroidIterator = theAsteroids.begin(); asteroidIterator != theAsteroids.end(); ++asteroidIterator)
+//		{
+//			if ((*asteroidIterator)->collidedWith((*asteroidIterator)->getBoundingRect(), (*bulletIterartor)->getBoundingRect()))
+//			{
+//				// if a collision set the bullet and asteroid to false
+//				(*asteroidIterator)->setActive(false);
+//				(*bulletIterartor)->setActive(false);
+//			}
+//		}
+//	}
+//
+//	vector<cBullet*>::iterator bulletIterartor = theRocketBullets.begin();
+//	while (bulletIterartor != theRocketBullets.end())
+//	{
+//		if ((*bulletIterartor)->isActive() == false)
+//		{
+//			bulletIterartor = theRocketBullets.erase(bulletIterartor);
+//		}
+//		else
+//		{
+//			//(*bulletIterartor)->update(deltaTime);
+//			(*bulletIterartor)->render();
+//			(*bulletIterartor)->renderCollisionBox();
+//			++bulletIterartor;
+//		}
+//	}
+//}

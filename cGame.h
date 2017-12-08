@@ -25,6 +25,7 @@ public:
 	void cleanUp(SDL_Window* theSDLWND);
 	void render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer);
 	void render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer, double rotAngle, SDL_Point* spriteCentre);
+	void render(SDL_Renderer* theRenderer, SDL_Point* spriteDimensions, SDL_Point* spritePos, SDL_Point* spriteScale);
 	void update();
 	void update(float deltaTime);
 	bool getInput(bool theLoop);
@@ -68,7 +69,7 @@ private:
 	gameState theGameState;
 	btnTypes theBtnType;
 	SDL_Rect pos;
-	FPoint scale;
+	SDL_Point scale;
 	SDL_Rect aRect;
 	SDL_Color aColour;
 	cTexture* tempTextTexture;

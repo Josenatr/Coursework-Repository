@@ -30,5 +30,6 @@ public:
 	cButton* getBtn(LPCSTR btnName);
 	void deleteBtn();
 	static cButtonMgr* getInstance();
+	bool loadTexture()
 };
 #endif

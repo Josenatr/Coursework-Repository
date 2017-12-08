@@ -75,7 +75,7 @@ bool cTexture::loadTexture(SDL_Texture* theTexture) 	// create the texture for u
 	if (sdlTextureID != 0)
 	{
 		cout << "Texture successfully loaded." << endl;
-		SDL_QueryTexture(sdlTextureID, NULL, NULL, &textureWidth, &textureHeight); // determine the width and height of the texture
+		SDL_QueryTexture(sdlTextureID, nullptr, nullptr, &textureWidth, &textureHeight); // determine the width and height of the texture
 		return true;
 	}
 	else
@@ -119,15 +119,15 @@ int cTexture::getTHeight() 						// Return height of texture;
 - Render the texture.
 =================
 */
-void cTexture::renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, FPoint theScaling)
+void cTexture::renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, SDL_Point theScaling)
 {
-	//SDL_RenderSetScale(theRenderer, theScaling.X, theScaling.Y);
+	SDL_RenderSetScale(theRenderer, theScaling.x, theScaling.y);
 	SDL_RenderCopy(theRenderer, ptheTexture, theSourceRect, theDestRect);
 }
 
-void cTexture::renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, FPoint theScaling)
+void cTexture::renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, SDL_Point theScaling)
 {
-	//SDL_RenderSetScale(theRenderer, theScaling.X, theScaling.Y);
+	SDL_RenderSetScale(theRenderer, theScaling.x, theScaling.y);
 	SDL_RenderCopyEx(theRenderer, ptheTexture, theSourceRect, theDestRect, rotAngle, spriteCentre, SDL_FLIP_NONE);
 }
 /*
