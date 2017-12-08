@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -27,26 +27,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -74,17 +74,21 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\include;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\include;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\include;C:\Users\Adam\Desktop\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\include;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\include;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\include;C:\Users\Adam\Desktop\SDL\SDL2_mixer-2.0.1\include;C:\Users\Adam\Desktop\SDL</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_mixer-2.0.1\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>echo copying SDL2.dll to debug directory
 xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\lib\x86\SDL2.dll" "$(OutDir)"
-xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\SDL2_image.dll" "$(OutDir)"</Command>
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\SDL2_image.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_mixer-2.0.1\lib\x86\SDL2_mixer.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86\SDL2_ttf.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86\libfreetype-6.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\libpng16-16.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -101,19 +105,23 @@ xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\SDL2_image.dll" "$(
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\include;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\include;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\include;C:\Users\Adam\Desktop\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\include;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\include;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\include;C:\Users\Adam\Desktop\SDL\SDL2_mixer-2.0.1\include;C:\Users\Adam\Desktop\SDL</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_mixer-2.0.1\lib\x86;C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>echo copying SDL2.dll to debug directory
 xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2-2.0.4\lib\x86\SDL2.dll" "$(OutDir)"
-xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\SDL2_image.dll" "$(OutDir)"</Command>
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\SDL2_image.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_mixer-2.0.1\lib\x86\SDL2_mixer.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86\SDL2_ttf.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_ttf-2.0.14\lib\x86\libfreetype-6.dll" "$(OutDir)"
+xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\libpng16-16.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,25 +138,41 @@ xcopy /Y "C:\Users\Adam\Desktop\SDL\SDL2_image-2.0.1\lib\x86\SDL2_image.dll" "$(
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cAsteroid.cpp" />
     <ClCompile Include="cBkGround.cpp" />
+    <ClCompile Include="cButton.cpp" />
+    <ClCompile Include="cButtonMgr.cpp" />
+    <ClCompile Include="cFileHandler.cpp" />
+    <ClCompile Include="cFont.cpp" />
+    <ClCompile Include="cFontMgr.cpp" />
     <ClCompile Include="cGame.cpp" />
-    <ClCompile Include="cRocket.cpp" />
+    <ClCompile Include="cMonster.cpp" />
     <ClCompile Include="cSDL2WNDManager.cpp" />
+    <ClCompile Include="cSound.cpp" />
+    <ClCompile Include="cSoundMgr.cpp" />
     <ClCompile Include="cSprite.cpp" />
     <ClCompile Include="cTexture.cpp" />
     <ClCompile Include="cTextureMgr.cpp" />
     <ClCompile Include="RocketsSDL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cAsteroid.h" />
     <ClInclude Include="cBkGround.h" />
+    <ClInclude Include="cButton.h" />
+    <ClInclude Include="cButtonMgr.h" />
+    <ClInclude Include="cFileHandler.h" />
+    <ClInclude Include="cFont.h" />
+    <ClInclude Include="cFontMgr.h" />
     <ClInclude Include="cGame.h" />
-    <ClInclude Include="cRocket.h" />
+    <ClInclude Include="cMonster.h" />
     <ClInclude Include="cSDL2WNDManager.h" />
+    <ClInclude Include="cSound.h" />
+    <ClInclude Include="cSoundMgr.h" />
     <ClInclude Include="cSprite.h" />
     <ClInclude Include="cTexture.h" />
     <ClInclude Include="cTextureMgr.h" />
     <ClInclude Include="GameConstants.h" />
-    <ClInclude Include="rocketGame.h" />
+    <ClInclude Include="monsterGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

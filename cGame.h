@@ -10,7 +10,7 @@ cGame.h
 #include <SDL.h>
 
 // Game specific includes
-#include "rocketGame.h"
+#include "monsterGame.h"
 
 
 using namespace std;
@@ -28,21 +28,54 @@ public:
 	void update();
 	void update(float deltaTime);
 	bool getInput(bool theLoop);
-	float getElapsedSeconds();
+	double getElapsedSeconds();
 
 	static cGame* getInstance();
 
 private:
 
 	static cGame* pInstance;
-
-	// game related variables
-	float m_lastTime;
-	// Sprites for displaying background and rocket textures
+	// for framerates
+	time_point< high_resolution_clock > m_lastTime;
+	time_point< high_resolution_clock > m_CurrentTime;
+	duration< double > deltaTime;
+	bool loop;
+	// Sprites for displaying background and monster textures
 	cSprite spriteBkgd;
-	cRocket rocketSprite;
+	cMonster monsterSprite;
 	// Game objects
+	// game related variables
+	vector<LPCSTR> textureName;
+	vector<LPCSTR> textName;
+	vector<LPCSTR> texturesToUse;
+	// Fonts to use
+	vector<LPCSTR> fontList;
+	vector<LPCSTR> fontsToUse;
+	// Text for Game
+	vector<LPCSTR> gameTextNames;
+	vector<LPCSTR> gameTextList;
+	// Game Sounds
+	vector<LPCSTR> soundList;
+	vector<soundType> soundTypes;
+	vector<LPCSTR> soundsToUse;
+	// Create vector array of button textures
+	vector<LPCSTR> btnNameList;
+	vector<LPCSTR> btnTexturesToUse;
+	vector<SDL_Point> btnPos;
+	vector <cButton> theButtons;
+	vector<cAsteroid*> theAsteroids;
 	int renderWidth, renderHeight;
+	gameState theGameState;
+	btnTypes theBtnType;
+	SDL_Rect pos;
+	FPoint scale;
+	SDL_Rect aRect;
+	SDL_Color aColour;
+	cTexture* tempTextTexture;
+	SDL_Point theAreaClicked;
+	cFileHandler theFile;
+	bool fileAvailable;
+
 };
 
 #endif

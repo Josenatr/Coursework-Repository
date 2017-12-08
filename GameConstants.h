@@ -13,9 +13,13 @@
 #include <SDL_image.h>
 // Font loading library
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 // Maths functions
 #include <math.h>
 #define PI 3.14159265
+// File handling
+#include <fstream>
+#include <sstream>
 //#include "glm\glm.hpp"
 //#include "glm\gtc\matrix_transform.hpp"
 //#include "glm\geometric.hpp"
@@ -26,6 +30,8 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <chrono>
+using namespace std::chrono;
 
 using namespace std;
 
@@ -40,5 +46,10 @@ typedef struct
 	float  X;
 	float  Y;
 }FPoint;
+
+enum textType { SOLID, BLENDED, SHADED };
+enum soundType { SFX, MUSIC };
+enum gameState { MENU, INSTRUCTIONS, CREATEMAZE, PLAYING, END, QUIT, LOADMAP, SAVEMAP };
+enum btnTypes { EXIT, INSTRUCT, LOAD, PLAY, SAVE, SETTINGS };
 
 #endif

@@ -65,6 +65,27 @@ bool cTexture::loadTexture(LPCSTR theFilename, SDL_Renderer *theRenderer) 	// cr
 
 	return false;
 }
+bool cTexture::loadTexture(SDL_Texture* theTexture) 	// create the texture for use.
+{
+
+	// Call SDL_Image IMG_LoadTexture to create the desired texture
+	sdlTextureID = theTexture;
+
+	// Check the Texture has been created from the surface
+	if (sdlTextureID != 0)
+	{
+		cout << "Texture successfully loaded." << endl;
+		SDL_QueryTexture(sdlTextureID, NULL, NULL, &textureWidth, &textureHeight); // determine the width and height of the texture
+		return true;
+	}
+	else
+	{
+		cout << "Texture could not be loaded!!" << endl;
+		cout << SDL_GetError() << endl;
+	}
+
+	return false;
+}
 /*
 =================
 - return the texture.
@@ -109,5 +130,14 @@ void cTexture::renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture
 	//SDL_RenderSetScale(theRenderer, theScaling.X, theScaling.Y);
 	SDL_RenderCopyEx(theRenderer, ptheTexture, theSourceRect, theDestRect, rotAngle, spriteCentre, SDL_FLIP_NONE);
 }
-
-
+/*
+==========================================================================
+Render the text using the desired font
+==========================================================================
+*/
+SDL_Rect cTexture::getTextureRect()
+{
+	SDL_Rect txtRect = { 0, 0, 0, 0 };
+	SDL_QueryTexture(this->sdlTextureID, NULL, NULL, &txtRect.w, &txtRect.h);
+	return txtRect;
+}
