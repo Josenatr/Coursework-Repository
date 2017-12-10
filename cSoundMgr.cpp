@@ -5,7 +5,6 @@ cSoundMgr.cpp
 */
 
 #include "cSoundMgr.h"
-#include "cGame.h"
 
 cSoundMgr* cSoundMgr::pInstance = NULL;
 

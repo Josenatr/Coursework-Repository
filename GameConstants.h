@@ -13,6 +13,7 @@
 #include <SDL_image.h>
 // Font loading library
 #include <SDL_ttf.h>
+// Audio loading library
 #include <SDL_mixer.h>
 // Maths functions
 #include <math.h>
@@ -20,12 +21,7 @@
 // File handling
 #include <fstream>
 #include <sstream>
-//#include "glm\glm.hpp"
-//#include "glm\gtc\matrix_transform.hpp"
-//#include "glm\geometric.hpp"
-//#include "glm\gtc\quaternion.hpp"
-//#include "glm\gtc\type_ptr.hpp"
-//#include "glm\gtx\quaternion.hpp"
+
 // STL Container & Algorithms
 #include <vector>
 #include <map>
@@ -36,7 +32,7 @@ using namespace std::chrono;
 using namespace std;
 
 //Define the string to appear in the top left corner of the window
-#define WINDOW_TITLE "Space Rockets - Using Transforms!"
+#define WINDOW_TITLE "Sketcher! Draw your own designs and save them to a file or try the random design if you dare!"
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 768
 
@@ -47,9 +43,9 @@ typedef struct
 	float  Y;
 }FPoint;
 
-enum textType { SOLID, BLENDED, SHADED };
-enum soundType { SFX, MUSIC };
-enum gameState { MENU, INSTRUCTIONS, CREATEMAZE, PLAYING, END, QUIT, LOADMAP, SAVEMAP };
+enum textType {SOLID, BLENDED, SHADED};
+enum soundType {SFX, MUSIC};
+enum gameState { MENU, INSTRUCTIONS, CREATEMAZE, PLAYING, SUBMIT, GIVEUP, QUIT, CREDITS, LOADMAP, SAVEMAP };
 enum btnTypes { EXIT, INSTRUCT, LOAD, PLAY, SAVE, SETTINGS };
 
 #endif

@@ -23,8 +23,8 @@ public:
 	~cTexture();
 	bool loadTexture(LPCSTR theFilename, SDL_Renderer *theRenderer);		// create the texture for use.
 	bool loadTexture(SDL_Texture* theTexture);		// create the texture for use.
-	void renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, SDL_Point theScaling);
-	void renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, SDL_Point theScaling);
+	void renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, FPoint theScaling);
+	void renderTexture(SDL_Renderer* theRenderer, SDL_Texture* ptheTexture, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, FPoint theScaling);
 	SDL_Texture* getTexture();						// return the texture.
 	int getTWidth();						// Return width of texture;
 	int getTHeight();						// Return height of texture;

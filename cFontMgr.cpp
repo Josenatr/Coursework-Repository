@@ -7,7 +7,6 @@ cFontMgr.h
 */
 
 #include "cFontMgr.h"
-#include "cGame.h"
 
 cFontMgr* cFontMgr::pInstance = NULL;
 

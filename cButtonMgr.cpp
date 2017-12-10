@@ -47,8 +47,8 @@ void cButtonMgr::add(LPCSTR btnName, cButton* theBtn)
 {
 	if (!getBtn(btnName))
 	{
-		cButton * newBtn = new cButton();
-		newTxt->loadTexture(theFilename, theSDLRenderer);
+		//cButton * newBtn = new cButton();
+		//newTxt->loadTexture(theFilename, theSDLRenderer);
 		gameBtns.insert(make_pair(btnName, theBtn));
 	}
 }

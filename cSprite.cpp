@@ -5,7 +5,6 @@ cSprite.cpp
 =================
 */
 #include "cSprite.h"
-#include "cGame.h"
 /*
 =================
 - Data constructor initializes the cSprite to the data passed to
@@ -18,7 +17,7 @@ cSprite::cSprite() 			// Default constructor
 
 	this->spritePos_2D = { 0, 0, 0, 0 };
 	this->spriteTexture = NULL;
-	this->spriteCentre = { 0, 0 };
+	this->spriteCentre = {0, 0};
 	this->spriteScale = { 1, 1 };
 	this->spriteRotationAngle = 0;
 	this->boundingRect = { 0, 0, 0, 0 };
@@ -30,7 +29,7 @@ cSprite::cSprite(cTexture* theSpriteTexture) 			// Default constructor
 	this->spriteTexture = theSpriteTexture;
 	this->setSpriteDimensions(this->spriteTexture->getTWidth(), this->spriteTexture->getTHeight());
 	this->spritePos_2D = { 0, 0, this->spriteTexture->getTWidth(), this->spriteTexture->getTHeight() };
-	this->spriteCentre = { this->spritePos_2D.w / 2, this->spritePos_2D.h / 2 };
+	this->spriteCentre = { this->spritePos_2D.w / 2, this->spritePos_2D.h / 2};
 	this->spriteScale = { 1, 1 };
 	this->spriteRotationAngle = 0;
 	this->boundingRect = { 0, 0, 0, 0 };
@@ -95,12 +94,12 @@ void cSprite::setTexture(cTexture* theSpriteTexture)  // set the image of the sp
 }
 
 
-void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, SDL_Point theScaling)
+void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, FPoint theScaling)
 {
 	this->spriteTexture->renderTexture(theRenderer, this->spriteTexture->getTexture(), theSourceRect, theDestRect, theScaling);
 }
 
-void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, SDL_Point theScaling)
+void cSprite::render(SDL_Renderer* theRenderer, SDL_Rect* theSourceRect, SDL_Rect* theDestRect, double rotAngle, SDL_Point* spriteCentre, FPoint theScaling)
 {
 	this->spriteTexture->renderTexture(theRenderer, this->spriteTexture->getTexture(), theSourceRect, theDestRect, rotAngle, spriteCentre, theScaling);
 }
@@ -153,7 +152,7 @@ void cSprite::setSpriteCentre(SDL_Point sCentre)  // set the position of the spr
 =================
 */
 
-SDL_Point cSprite::getSpriteScale()  // Return the sprites current scaling
+FPoint cSprite::getSpriteScale()  // Return the sprites current scaling
 {
 	return this->spriteScale;
 }
@@ -164,10 +163,10 @@ SDL_Point cSprite::getSpriteScale()  // Return the sprites current scaling
 =================
 */
 
-void cSprite::setSpriteScale(SDL_Point sScale)  // set the sprites current scaling
+void cSprite::setSpriteScale(FPoint sScale)  // set the sprites current scaling
 {
-	this->spriteScale.x += sScale.x;
-	this->spriteScale.y += sScale.y;
+	this->spriteScale.X += sScale.X;
+	this->spriteScale.Y += sScale.Y;
 }
 /*
 =================
@@ -178,8 +177,8 @@ void cSprite::setSpriteScale(SDL_Point sScale)  // set the sprites current scali
 void cSprite::scaleSprite()  // set the sprites current scaling
 {
 	// Scale sprite
-	this->spritePos_2D.w = this->spriteDimensions.w * this->spriteScale.x;
-	this->spritePos_2D.h = this->spriteDimensions.h * this->spriteScale.y;
+	this->spritePos_2D.w = this->spriteDimensions.w * this->spriteScale.X;
+	this->spritePos_2D.h = this->spriteDimensions.h * this->spriteScale.Y;
 	// Scale Sprite Centre for rotation.
 	this->spriteCentre.x = this->spritePos_2D.w / 2;
 	this->spriteCentre.y = this->spritePos_2D.h / 2;

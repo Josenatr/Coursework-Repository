@@ -10,7 +10,7 @@ cGame.h
 #include <SDL.h>
 
 // Game specific includes
-#include "monsterGame.h"
+#include "MazeMakerEditor.h"
 
 
 using namespace std;
@@ -25,9 +25,8 @@ public:
 	void cleanUp(SDL_Window* theSDLWND);
 	void render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer);
 	void render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer, double rotAngle, SDL_Point* spriteCentre);
-	void render(SDL_Renderer* theRenderer, SDL_Point* spriteDimensions, SDL_Point* spritePos, SDL_Point* spriteScale);
 	void update();
-	void update(float deltaTime);
+	void update(double deltaTime);
 	bool getInput(bool theLoop);
 	double getElapsedSeconds();
 
@@ -41,10 +40,9 @@ private:
 	time_point< high_resolution_clock > m_CurrentTime;
 	duration< double > deltaTime;
 	bool loop;
-	// Sprites for displaying background and monster textures
+
+	// Sprites for displaying background and rocket textures
 	cSprite spriteBkgd;
-	cMonster monsterSprite;
-	// Game objects
 	// game related variables
 	vector<LPCSTR> textureName;
 	vector<LPCSTR> textName;
@@ -64,19 +62,24 @@ private:
 	vector<LPCSTR> btnTexturesToUse;
 	vector<SDL_Point> btnPos;
 	vector <cButton> theButtons;
-	vector<cAsteroid*> theAsteroids;
+	// Game objects
+	// Define the elements and there position in/on the array/map
+	cTileMap theTileMap;
+	cTilePicker theTilePicker;
+	cFileHandler theFile;
+	cSprite dragTile;
+	SDL_Point theTileClicked;
+	SDL_Point mapTileClicked;
 	int renderWidth, renderHeight;
 	gameState theGameState;
 	btnTypes theBtnType;
 	SDL_Rect pos;
-	SDL_Point scale;
+	FPoint scale;
 	SDL_Rect aRect;
 	SDL_Color aColour;
 	cTexture* tempTextTexture;
 	SDL_Point theAreaClicked;
-	cFileHandler theFile;
 	bool fileAvailable;
-
 };
 
 #endif
