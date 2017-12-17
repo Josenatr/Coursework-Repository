@@ -10,7 +10,7 @@ cGame.h
 #include <SDL.h>
 
 // Game specific includes
-#include "MazeMakerEditor.h"
+#include "Sketcher.h"
 
 
 using namespace std;
@@ -80,6 +80,9 @@ private:
 	cTexture* tempTextTexture;
 	SDL_Point theAreaClicked;
 	bool fileAvailable;
+	int tilesPlaced;
+	bool clearMap;
+	float buttonTimer;
 };
 
 #endif

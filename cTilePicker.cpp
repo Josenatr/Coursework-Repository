@@ -68,6 +68,18 @@ void cTilePicker::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer, cText
 			case 12:
 				txtToUse = 11;
 				break;
+			case 13:
+				txtToUse = 12;
+				break;
+			case 14:
+				txtToUse = 13;
+				break;
+			case 15:
+				txtToUse = 14;
+				break;
+			case 16:
+				txtToUse = 15;
+				break;
 			}
 			this->aTile.setTexture(theTxtMgr->getTexture(theTxt[txtToUse]));
 			this->aTile.setSpriteDimensions(theTxtMgr->getTexture(theTxt[txtToUse])->getTWidth(), theTxtMgr->getTexture(theTxt[txtToUse])->getTHeight());
@@ -77,8 +89,8 @@ void cTilePicker::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer, cText
 			aTile.render(theRenderer, &aTile.getSpriteDimensions(), &tilePosXY, aTile.getSpriteRotAngle(), &aTile.getSpriteCentre(), aTile.getSpriteScale());
 			tilePosXY.x += aTile.getSpritePos().w;
 		}
-		tilePosXY.x = tileListStartXY.x;
-		tilePosXY.y += aTile.getSpritePos().h;
+		tilePosXY.x = tileListStartXY.x; 
+		tilePosXY.y += aTile.getSpritePos().h; //this moves the tiles in order to fit in the array
 	}
 }
 /*
@@ -90,7 +102,7 @@ Update the sprite position
 void cTilePicker::update(SDL_Point theAreaClicked)
 {
 	SDL_Point areaClicked = theAreaClicked;
-	if (areaClicked.x > this->tileListStartXY.x && areaClicked.x < 932 && areaClicked.y > this->tileListStartXY.y && areaClicked.y < 556)
+	if (areaClicked.x > this->tileListStartXY.x && areaClicked.x < 868 && areaClicked.y > this->tileListStartXY.y && areaClicked.y < 228) //this is used to decide the size of the area that the player can click on in order to select a colour
 		{
 			this->tileClickedRC.x = (int)(areaClicked.x - this->tileListStartXY.x) / this->aTile.getSpriteDimensions().w;
 			this->tileClickedRC.y = (int)(areaClicked.y - this->tileListStartXY.y) / this->aTile.getSpriteDimensions().h;
@@ -106,9 +118,9 @@ void cTilePicker::update(SDL_Point theAreaClicked)
 void cTilePicker::initialiseTileList()
 {
 	int tile = 1;
-	for (int row = 0; row < 4; row++)
+	for (int row = 0; row < 4; row++) //checks the size of the row
 	{
-		for (int column = 0; column < 3; column++)
+		for (int column = 0; column < 4; column++) //checks the size of the column
 		{
 			this->tilePickingList[row][column] = tile;
 			tile++;
@@ -128,7 +140,7 @@ void cTilePicker::setTileListStartXY(SDL_Point startPosXY)
 }
 /*
 =================================================================
-- get start pposition for tile map
+- get start position for tile map
 =================================================================
 */
 SDL_Point cTilePicker::getTileListStartXY()
@@ -137,7 +149,7 @@ SDL_Point cTilePicker::getTileListStartXY()
 }
 /*
 =================================================================
-- set value of tree to be used
+- set value of tile to be used
 =================================================================
 */
 void cTilePicker::setTilePicked(int aTilePicked)
@@ -146,7 +158,7 @@ void cTilePicker::setTilePicked(int aTilePicked)
 }
 /*
 =================================================================
-- get value of tree to be used
+- get value of tile to be used
 =================================================================
 */
 int cTilePicker::getTilePicked()

@@ -189,7 +189,7 @@ void cSprite::scaleSprite()  // set the sprites current scaling
 =================
 */
 
-float cSprite::getSpriteRotAngle()  // Return the sprites current scaling
+float cSprite::getSpriteRotAngle()  // Return the sprites rotation angle
 {
 	return this->spriteRotationAngle;
 }
@@ -200,7 +200,7 @@ float cSprite::getSpriteRotAngle()  // Return the sprites current scaling
 =================
 */
 
-void cSprite::setSpriteRotAngle(float angle)  // set the sprites current scaling
+void cSprite::setSpriteRotAngle(float angle)  // set the sprites rotation angle
 {
 	this->spriteRotationAngle = angle;
 }
@@ -285,7 +285,7 @@ bool cSprite::SphereSphereCollision(SDL_Point spritePosition, float spriteRadius
 
 	const float sumRadius = (this->getSpriteCentre().x + spriteRadius);
 
-	if (distSq < sumRadius * sumRadius)
+	if (distSq < sumRadius * sumRadius) //checks to see if the spheres have collided
 	{
 		return true; // Collision
 	}

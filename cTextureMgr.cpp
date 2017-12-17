@@ -52,9 +52,9 @@ void cTextureMgr::addTexture(LPCSTR txtName, LPCSTR theFilename)
 {
 	if (!getTexture(txtName))
 	{
-		cTexture * newTxt = new cTexture();
-		newTxt->loadTexture(theFilename, theSDLRenderer);
-		textureList.insert(make_pair(txtName, newTxt));
+		cTexture * newTxt = new cTexture(); //declares the new texture
+		newTxt->loadTexture(theFilename, theSDLRenderer); //loads the new texture using it's filename and renderer
+		textureList.insert(make_pair(txtName, newTxt)); //inserts this new texture into the texture list
 	}
 }
 

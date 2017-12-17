@@ -27,20 +27,20 @@ cFont::~cFont()
 }
 /*
 ==========================================================================
-Load the desiered font
+Load the desired font
 ==========================================================================
 */
 bool cFont::loadFont(LPCSTR fontFileName, int fontSize)
 {
 	theFont = TTF_OpenFont(fontFileName, fontSize);
 
-	if (theFont == NULL)
+	if (theFont == NULL) //this if statement checks to see if a font is present
 	{
-		cout << " Failed to load font : " << SDL_GetError() << endl;
+		cout << " Failed to load font : " << SDL_GetError() << endl; //this error message shows when no font can be found
 		delete theFont;
 		return false;
 	}
-	cout << "Font '" << fontFileName << "' loaded successfully" << endl;
+	cout << "Font '" << fontFileName << "' loaded successfully" << endl; //this message shows if the font selected has been loaded successfully
 	return true;
 }
 
@@ -66,19 +66,19 @@ SDL_Texture* cFont::createTextTexture(SDL_Renderer* theRenderer, LPCSTR text, te
 
 	switch (txtType)
 	{
-		case SOLID:
+		case SOLID: //the option for Solid style font
 		{
-			theTxtSurface = TTF_RenderText_Solid(theFont, text, txtColour);
+			theTxtSurface = TTF_RenderText_Solid(theFont, text, txtColour); //this looks for the font being used, the text to be written and the colour of the text
 		}
 		break;
-		case BLENDED:
+		case BLENDED: //the option for Blender style font
 		{
 			theTxtSurface = TTF_RenderText_Blended(theFont, text, txtColour);
 		}
 		break;
-		case SHADED:
+		case SHADED: //the option for Shaded style font
 		{
-			theTxtSurface = TTF_RenderText_Shaded(theFont, text, txtColour, txtBkgd);
+			theTxtSurface = TTF_RenderText_Shaded(theFont, text, txtColour, txtBkgd); //this also requires a text background to be declared
 		}
 		break;
 		default:

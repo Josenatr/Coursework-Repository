@@ -1,6 +1,6 @@
 /*
 =================
-cButtinMgr.cpp
+cButtonMgr.cpp
 - CPP file for class definition - IMPLEMENTATION
 - CPP file for the ButtonMgr class
 =================
@@ -40,7 +40,7 @@ cButtonMgr::cButtonMgr()
 */
 cButtonMgr::~cButtonMgr()
 {
-	deleteBtn();
+	deleteBtn(); //deletes a button when necessary
 }
 
 void cButtonMgr::add(LPCSTR btnName, cButton* theBtn)
@@ -71,7 +71,7 @@ cButton* cButtonMgr::getBtn(LPCSTR btnName)        // return the texture.
 	map<LPCSTR, cButton*>::iterator btn = gameBtns.find(btnName);
 	if (btn != gameBtns.end())
 	{
-		return btn->second;
+		return btn->second; 
 	}
 	else
 	{

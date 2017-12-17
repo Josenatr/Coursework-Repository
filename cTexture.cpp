@@ -53,14 +53,14 @@ bool cTexture::loadTexture(LPCSTR theFilename, SDL_Renderer *theRenderer) 	// cr
 	// Check the Texture has been created from the surface
 	if (sdlTextureID != 0)
 	{
-		cout << "Texture '" << theFilename << "' successfully loaded." << endl;
+		//cout << "Texture '" << theFilename << "' successfully loaded." << endl; //appears if the texture has been successfully loaded
 		SDL_QueryTexture(sdlTextureID, NULL, NULL, &textureWidth, &textureHeight); // determine the width an height of the texture
 		return true;
 	}
 	else
 	{
-		cout << "Texture '" << theFilename << "' could not be loaded!!" << endl;
-		cout << SDL_GetError() << endl;
+		cout << "Texture '" << theFilename << "' could not be loaded!!" << endl; //if the texture is not loaded this will show
+		cout << SDL_GetError() << endl; //an error appears and the application ends
 	}
 
 	return false;
@@ -74,14 +74,14 @@ bool cTexture::loadTexture(SDL_Texture* theTexture) 	// create the texture for u
 	// Check the Texture has been created from the surface
 	if (sdlTextureID != 0)
 	{
-		cout << "Texture successfully loaded." << endl;
+		cout << "Texture successfully loaded." << endl; //appears if the texture has been successfully loaded
 		SDL_QueryTexture(sdlTextureID, NULL, NULL, &textureWidth, &textureHeight); // determine the width an height of the texture
 		return true;
 	}
 	else
 	{
-		cout << "Texture could not be loaded!!" << endl;
-		cout << SDL_GetError() << endl;
+		cout << "Texture could not be loaded!!" << endl; //if the texture is not loaded this will show
+		cout << SDL_GetError() << endl; //an error appears and the application ends
 	}
 
 	return false;

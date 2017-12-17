@@ -13,7 +13,7 @@ cTreePicker.h
 class cTilePicker : public cSprite
 {
 protected:
-	int tilePickingList[4][3];
+	int tilePickingList[4][4];
 	int tileMap[16][16];
 
 private:

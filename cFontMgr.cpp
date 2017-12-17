@@ -57,22 +57,22 @@ void cFontMgr::addFont(LPCSTR fontName, LPCSTR fileName, int fontSize)  // add f
 {
 	if (!getFont(fontName))
 	{
-		cFont * newFont = new cFont();
-		newFont->loadFont(fileName, fontSize);
-		fontList.insert(make_pair(fontName, newFont));
+		cFont * newFont = new cFont(); 
+		newFont->loadFont(fileName, fontSize); //loads the new font with its file name and size
+		fontList.insert(make_pair(fontName, newFont)); //inserts the font into the font list
 	}
 }
 
 cFont* cFontMgr::getFont(LPCSTR fontName)				// return the font for use
 {
 	map<LPCSTR, cFont*>::iterator theFont = fontList.find(fontName);
-	if (theFont != fontList.end())
+	if (theFont != fontList.end()) //if the font is not at the end of the font list
 	{
-		return theFont->second;
+		return theFont->second; //returns the font
 	}
 	else
 	{
-		return NULL;
+		return NULL; //if the font can't be found nothing is returned
 	}
 }
 
@@ -81,6 +81,6 @@ void cFontMgr::deleteFont()								// delete font.
 	for (map<LPCSTR, cFont*>::const_iterator theFont = fontList.begin(); theFont != fontList.end(); theFont++)
 	{
 		//TTF_CloseFont(theFont->second->getFont());
-		delete theFont->second;
+		delete theFont->second; 
 	}
 }

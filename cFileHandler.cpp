@@ -1,6 +1,6 @@
 /*
 =================
-- cTileMap.cpp
+- cFileHandler.cpp
 - Header file for class definition - IMPLEMENTATION
 =================
 */

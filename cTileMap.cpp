@@ -127,7 +127,7 @@ Update the sprite position
 =================================================================
 */
 
-void cTileMap::update(SDL_Point theMapAreaClicked, int theTileToPlace)
+void cTileMap::update(SDL_Point theMapAreaClicked, int theTileToPlace, int tilesPlaced)
 {
 	SDL_Point areaClicked = theMapAreaClicked;
 	if (theTileToPlace > -1)
